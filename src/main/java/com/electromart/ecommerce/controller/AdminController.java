@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
+    @CrossOrigin("*")
 public class AdminController {
 
     private final ProductService productService;
