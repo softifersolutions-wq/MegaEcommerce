@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: electromart-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  app:
+    build: .
+    container_name: electromart-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      # Single connection URI — overrides everything in application.properties,
+      # including the broken spring.mongodb.* keys. "mongo" = the service name below,
+      # which Docker's internal DNS resolves to the mongo container automatically.
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/electromart
+      # Cloudinary keys are NOT overridden here — application.properties already has
+      # real values hardcoded. Add CLOUDINARY_* env vars back (with a .env file) only
+      # once you move those secrets out of application.properties.
+
+volumes:
+  mongo-data:
