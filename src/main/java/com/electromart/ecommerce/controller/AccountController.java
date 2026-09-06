@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/reg/account")
 @RequiredArgsConstructor
+    @CrossOrigin("*")
 public class AccountController {
 
     private final AccountService accountService;
