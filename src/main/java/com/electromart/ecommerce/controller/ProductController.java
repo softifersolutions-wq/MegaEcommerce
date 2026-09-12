@@ -47,7 +47,7 @@ private BlogService blogService;
     public ResponseEntity<List<String>> getBrands() {
         return ResponseEntity.ok(productService.getBrands());
     }
-    @GetMapping("/all")
+     @GetMapping("/all")
     public ResponseEntity<List<BlogEntity>> fetchPublicFeed() {
         try {
             List<BlogEntity> blogs = blogService.getAllBlogs();
@@ -57,7 +57,7 @@ private BlogService blogService;
         }
     }
     // Is code function block ko Controller array mappings me shamil karein
-    @GetMapping("/{slug}")
+    @GetMapping("/byslug/{slug}")
     public ResponseEntity<?> getBlogBySlug(@PathVariable String slug) {
         try {
             // Id se hatakar service layer ko custom slug string matrix forward karna
